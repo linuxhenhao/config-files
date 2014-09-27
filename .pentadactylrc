@@ -1,1 +1,11 @@
-/home/huangyu/.pentadactylrc
+map -m n h gT
+
+map -m n l -builtin <C-n>
+
+map -m n w gT
+
+map -m n e -builtin <C-n> 
+
+map -modes=n,v j -builtin 15j
+
+map -modes=n,v k -builtin 15k
