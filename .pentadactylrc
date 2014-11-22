@@ -1,3 +1,4 @@
+set guioptions+=T
 map -m n h gT
 
 map -m n l -builtin <C-n>
