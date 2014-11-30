@@ -111,4 +111,4 @@ fi
 #    . /etc/bash_completion
 #  fi
 #fi
-export PATH=$PATH:/sbin:/usr/sbin:/usr/share/local/bin:/home/huangyu/workspace/shell:/home/huangyu/workspace/bin:/home/huangyu/workspace/android-sdk-linux/platform-tools
+export PATH=$PATH:/sbin:/usr/sbin:/usr/share/local/bin:/home/huangyu/workspace/shell:/home/huangyu/workspace/shell:/home/huangyu/workspace/android-sdk-linux/platform-tools:/usr/lolal/bin
