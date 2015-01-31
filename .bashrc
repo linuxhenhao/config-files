@@ -114,10 +114,10 @@ fi
 export PATH=$PATH:/sbin:/usr/sbin:/usr/share/local/bin:/home/huangyu/workspace/shell:/home/huangyu/workspace/shell:/home/huangyu/workspace/android-sdk-linux/platform-tools:/usr/lolal/bin:/opt/deadbeef/bin
 #
 #for UG
-UGII_BASE_DIR=/home/huangyu/workspace/ug85; export UGII_BASE_DIR
-UGII_ROOT_DIR=/home/huangyu/workspace/ug85/ugii; export UGII_ROOT_DIR
-UGS_LICENSE_SERVER=28000@ubuntu-kylin; export UGS_LICENSE_SERVER
-export LM_LICENSE_FILE=/usr/Siemens/PLMLicenseServer/splm5.lic
+UGII_BASE_DIR=/home/huangyu/workspace/ugs100; export UGII_BASE_DIR
+UGII_ROOT_DIR=/home/huangyu/workspace/ugs100/ugii; export UGII_ROOT_DIR
+SPLM_LICENSE_SERVER=28000@ubuntu-kylin; export SPLM_LICENSE_SERVER
+export LM_LICENSE_FILE=/home/huangyu/workspace/ugs100/Siemens/PLMLicenseServer/splm6.lic
 
 #for wine
 #export WINEPREFIX=/home/huangyu/.wine

@@ -348,6 +348,8 @@ awful.rules.rules = {
     --   properties = { tag = tags[1][2] } },
      { rule = { class = "Iceweasel" },
        properties = { tag = tags[1][1] } },
+     { rule = { class = "Ugnx10" },
+       properties = { tag = tags[1][3],floating = true } },
 }
 -- }}}
 
