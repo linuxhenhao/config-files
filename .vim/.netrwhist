@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/huangyu/workspace/deb/softap'
+let g:netrw_dirhist_2='/home/huangyu/workspace/deb/softap/etc'
+let g:netrw_dirhist_3='/home/huangyu/workspace/deb/softap/etc/init.d'
+let g:netrw_dirhist_4='/home/huangyu/workspace/deb/360wifi2/mt7601u-master/src'
+let g:netrw_dirhist_5='/home/huangyu/workspace/deb/360wifi2/mt7601ap/DEBIAN'
+let g:netrw_dirhist_6='/home/huangyu/workspace/deb/360wifi2/mt7601u-master/.git'
+let g:netrw_dirhist_7='/home/huangyu/.aienv_fea2.015.0_cache'
