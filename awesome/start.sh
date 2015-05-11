@@ -6,7 +6,7 @@ check_and_run()
 		$1 &
 	fi
 }
-programs="xcompmgr sogou-qimpanel synap volumeicon"
+programs="xcompmgr sogou-qimpanel synap volumeicon nutstore"
 
 for i in $programs
 do
