@@ -122,5 +122,6 @@ export LM_LICENSE_FILE=/home/huangyu/workspace/ugs100/Siemens/PLMLicenseServer/s
 #for wine
 #export WINEPREFIX=/home/huangyu/.wine
 
-# added by Anaconda3 2.2.0 installer
-export PATH="/home/huangyu/workspace/anaconda3/bin:$PATH"
+
+# added by Anaconda 2.2.0 installer
+export PATH="/home/huangyu/workspace/ananconda/bin:$PATH"
