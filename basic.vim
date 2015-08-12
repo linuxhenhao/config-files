@@ -430,3 +430,4 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 set number
+set fileencodings=ucs-bom,utf-8,cp936
