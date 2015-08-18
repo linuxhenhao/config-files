@@ -124,4 +124,4 @@ export LM_LICENSE_FILE=/home/huangyu/workspace/ugs100/Siemens/PLMLicenseServer/s
 
 
 # added by Anaconda 2.2.0 installer
-export PATH="/home/huangyu/workspace/ananconda/bin:$PATH"
+export PATH=/home/huangyu/workspace/bin:$PATH:/home/huangyu/gimp/bin
