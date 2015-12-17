@@ -124,4 +124,13 @@ export LM_LICENSE_FILE=/home/huangyu/workspace/ugs100/Siemens/PLMLicenseServer/s
 
 
 # added by Anaconda 2.2.0 installer
-export PATH=/home/huangyu/workspace/bin:$PATH:/home/huangyu/gimp/bin
+export PATH=/home/huangyu/workspace/bin:$PATH:/home/huangyu/gimp/bin:/usr/lib/jvm/java-6-openjdk-amd64/bin
+
+alias wine='wine-development'
+alias wineboot='wineboot-development'
+alias winepath='winepath-development'
+alias winecfg='winecfg-development'
+alias winedbg='winedbg-development'
+alias winefile='winefile-development'
+alias regedit='regedit-development'
+alias regsvr32='regsvr32-development'
