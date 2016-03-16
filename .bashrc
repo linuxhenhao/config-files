@@ -138,3 +138,4 @@ alias regsvr32='regsvr32-development'
 #for wxpython phoenix
 export PYTHONPATH=$PYTHONPATH:/home/huangyu/workspace/wxpython/
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/huangyu/workspace/wxpython/build/wxbld/lib
+export PATH=$PATH:/home/huangyu/workspace/orangepi/gcc-linaro-arm-linux/bin
