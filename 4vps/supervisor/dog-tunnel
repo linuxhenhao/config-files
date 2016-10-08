@@ -1,4 +1,0 @@
-[program:dog-tunnel]
-command=dtunnel_lite -service server_addr:1256 -auth pass
-autostart=true
-autorestart=true

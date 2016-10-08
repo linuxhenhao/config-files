@@ -1,4 +1,0 @@
-[program:shadowsocks]
-command=ssserver -d start -c /etc/shadowsocks.json
-autostart=true
-autorestart=true
