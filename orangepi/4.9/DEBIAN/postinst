@@ -1,0 +1,9 @@
+#!/bin/sh
+
+
+
+# Pass maintainer script parameters to hook scripts
+
+ln -sf vmlinuz-4.9.0-sun8i /boot/zImage > /dev/null 2>&1 || mv /boot/vmlinuz-4.9.0-sun8i /boot/zImage
+touch /boot/.next
+exit 0

@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+#To clear the cache when memory used out
+#when free memory is less than 100M for 1G in total as orangepi has.
+
+import time,os
+
+less_free_mem=100 # unit MB
+
+def unit_exchange(splited_line): #splited_line:type,value,unit
+    value=int(splited_line[1])
+    if(splited_line[-1]=='B'):
+        return value/(1024*1024)
+    elif(splited_line[-1]=='kB'):
+        return value/1024
+    elif(splited_line[-1]=='mB'):
+        return value
+    return None
+
+
+while(True):
+    f=open('/proc/meminfo')
+    free_mem=0
+    for line in f.readlines():
+        splited_line=line.split()
+        if(splited_line[0]=='MemTotal:'):
+            total_mem=unit_exchange(splited_line)
+        if(splited_line[0]=='MemAvailable:'):
+            free_mem=unit_exchange(splited_line)
+            if(free_mem<less_free_mem):
+                pipe=os.popen('sysctl vm.drop_caches=3')
+                pipe.close()
+            break
+    print(">>free_mem: "+str(free_mem))
+              
+    f.close()
+    if(free_mem!=0):# MemAvailable found
+        time.sleep(int((total_mem-free_mem)/2))
+    else:
+        time.sleep(5)
+

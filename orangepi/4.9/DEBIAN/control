@@ -1,0 +1,14 @@
+Package: linux-image-dev-sun8i
+Source: linux-4.9.0-sun8i
+Version: 5.24
+Architecture: armhf
+Maintainer: Igor Pecovnik <igor.pecovnik@****l.com>
+Installed-Size: 47504
+Suggests: linux-firmware-image-dev-sun8i
+Provides: linux-image-4.9.0-sun8i, linux-modules-4.9.0-sun8i
+Section: kernel
+Priority: optional
+Homepage: http://www.kernel.org/
+Description: Linux kernel, version 4.9.0-sun8i
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 4.9.0-sun8i.
