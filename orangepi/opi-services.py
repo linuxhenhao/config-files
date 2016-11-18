@@ -43,11 +43,10 @@ class Seafile:
         seafile_command = self.seafile + ' ' + command
         seahub_command = self.seahub + ' ' + command
         if(self.user != None):
-            seafile_command = 'su '+self.user+' -c '+\
-                    seafile_command
-            seahub_command = 'su '+self.user+' -c '+\
-                    seahub_command
-
+            seafile_command = 'su '+self.user+' -c '+"\""+seafile_command+"\""
+            seahub_command = 'su '+self.user+' -c '+"\""+seahub_command+"\""
+	print(">>>seafile:"+seafile_command)
+	print(">>>seahub:"+seahub_command)
         os.system(seafile_command)
         os.system(seahub_command)
 
