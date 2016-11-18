@@ -13,6 +13,7 @@ seafile_dir = '/media/u-sda1/yuzi/seafile-server-latest'
 seafile_script = 'seafile.sh'
 seahub_script = 'seahub.sh'
 seafile_statu_process_name = 'seafile-controller'
+seafile_user = 'orangepi' #seafile must be run by the owner of seafile-data dir
 
 # xunlei parameters
 xunlei_dir = '/home/orangepi/xunlei'
@@ -21,11 +22,12 @@ xunlei_statu_process_name =  'ETMDaemon'
 
 class Seafile:
     def __init__(self,seafile_dir,seafile_script,seahub_script,\
-            statu_process_name):
+            statu_process_name,run_as_user=None):
         self.dir = seafile_dir
         self.seafile = self.dir + os.sep + seafile_script
         self.seahub = self.dir + os.sep + seahub_script
         self.statu_process_name = statu_process_name
+        self.user = run_as_user
 
     @property
     def status(self):
@@ -40,6 +42,12 @@ class Seafile:
     def run(self,command):
         seafile_command = self.seafile + ' ' + command
         seahub_command = self.seahub + ' ' + command
+        if(self.user != None):
+            seafile_command = 'su '+self.user+' -c '+\
+                    seafile_command
+            seahub_command = 'su '+self.user+' -c '+\
+                    seahub_command
+
         os.system(seafile_command)
         os.system(seahub_command)
 
@@ -85,7 +93,7 @@ class Xunlei:
 if __name__ == '__main__':
     print('ha')
     CSeafile = Seafile(seafile_dir,seafile_script,seahub_script,\
-            seafile_statu_process_name)
+            seafile_statu_process_name,seafile_user)
     CXunlei = Xunlei(xunlei_dir,xunlei_bin,xunlei_statu_process_name)
 
     while True:
