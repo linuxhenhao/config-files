@@ -111,7 +111,7 @@ fi
 #    . /etc/bash_completion
 #  fi
 #fi
-export PATH=$PATH:/sbin:/usr/sbin:/usr/share/local/bin:/home/huangyu/workspace/shell:/home/huangyu/workspace/shell:/home/huangyu/workspace/android-sdk-linux/platform-tools:/usr/lolal/bin:/opt/deadbeef/bin
+export PATH=$PATH:/sbin:/usr/sbin:/usr/share/local/bin:/home/huangyu/workspace/shell:/home/huangyu/workspace/shell:/home/huangyu/workspace/android-sdk-linux/platform-tools:/usr/local/bin:/opt/deadbeef/bin
 #
 #for UG
 UGII_BASE_DIR=/home/huangyu/workspace/ugs100; export UGII_BASE_DIR
@@ -124,7 +124,7 @@ export LM_LICENSE_FILE=/home/huangyu/workspace/ugs100/Siemens/PLMLicenseServer/s
 
 
 # added by Anaconda 2.2.0 installer
-export PATH=/home/huangyu/workspace/bin:$PATH:/home/huangyu/gimp/bin:/usr/lib/jvm/java-6-openjdk-amd64/bin
+export PATH=/home/huangyu/workspace/bin:$PATH:/usr/lib/jvm/java-6-openjdk-amd64/bin
 
 alias wine='wine-development'
 alias wineboot='wineboot-development'
@@ -136,6 +136,7 @@ alias regedit='regedit-development'
 alias regsvr32='regsvr32-development'
 
 #for wxpython phoenix
-export PYTHONPATH=$PYTHONPATH:/home/huangyu/workspace/wxpython/
+#export PYTHONPATH=$PYTHONPATH:/home/huangyu/workspace/wxpython/
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/huangyu/workspace/wxpython/build/wxbld/lib
 export PATH=$PATH:/home/huangyu/workspace/orangepi/gcc-linaro-arm-linux/bin:/usr/local/bin
+export AMDAPPSDKROOT="/home/huangyu/AMDAPPSDK-3.0"
