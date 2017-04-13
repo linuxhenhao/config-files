@@ -8,6 +8,7 @@ check_and_run()
 }
 programs="xcompmgr sogou-qimpanel synap volumeicon" #nutstore"
 
+touch ~/start-run
 for i in $programs
 do
    check_and_run $i
