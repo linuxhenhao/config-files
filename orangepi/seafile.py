@@ -93,8 +93,7 @@ class Xunlei:
 if __name__ == '__main__':
     print('ha')
     CSeafile = Seafile(seafile_dir,seafile_script,seahub_script,\
-            seafile_statu_process_name,seafile_user)
-    CXunlei = Xunlei(xunlei_dir,xunlei_bin,xunlei_statu_process_name)
+            seafile_statu_process_name)
 
     while True:
         if(CSeafile.status == False):
