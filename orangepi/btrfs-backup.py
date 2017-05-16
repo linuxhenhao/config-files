@@ -36,7 +36,8 @@ def datestr(timestamp=None):
         timestamp = time.localtime()
     return time.strftime('%Y%m%d%H%M', timestamp)
 
-def new_snapshot(disk, snapshotdir, snapshotprefix, readonly=True):
+
+def new_snapshot(disk, snapshotdir, snapshotprefix, num_snapshots=0, readonly=True):
     snaploc = os.path.join(snapshotdir, snapshotprefix + datestr())
     command = ['btrfs', 'subvolume', 'snapshot']
     if readonly:
@@ -45,6 +46,9 @@ def new_snapshot(disk, snapshotdir, snapshotprefix, readonly=True):
 
     try:
         subprocess.check_call(command)
+        if(num_snapshots != 0):
+            delete_old_backups(snapshotdir, num_snapshots)
+            print("deleting old source snapshots")
         return snaploc
     except CalledProcessError:
         print("Error on command:", str(command), file=sys.stderr)
@@ -133,6 +137,8 @@ if __name__ == "__main__":
                         help="enable btrfs debugging on send/receive")
     parser.add_argument('--num-backups', type=int, default=0,
                         help="only store given number of backups in backup folder")
+    parser.add_argument('--num-snapshots', type=int, default=0,
+                        help="only store given number of snapshots in snapshot folder")
     parser.add_argument('--snapshot-folder',
                         help="snapshot folder in source filesystem")
     parser.add_argument('--snapshot-prefix',
@@ -185,8 +191,15 @@ if __name__ == "__main__":
     if not os.path.exists(snapdir):
         os.mkdir(snapdir)
 
+    if args.num_snapshots and args.latest_only:
+        print("--num-snapshots and --latest-only option cannot ecoexist")
+        sys.exit(0)
+    elif args.num_snapshots:
+        NUM_SNAPSHOTS = args.num_snapshots
     # First we need to create a new snapshot on the source disk
-    sourcesnap = new_snapshot(sourceloc, snapdir, snapprefix)
+        sourcesnap = new_snapshot(sourceloc, snapdir, snapprefix, NUM_SNAPSHOTS)
+    else:
+        sourcesnap = new_snapshot(sourceloc, snapdir, snapprefix)
     print("sourcesnap:", str(sourcesnap), file=sys.stderr)
 
     if not sourcesnap:
