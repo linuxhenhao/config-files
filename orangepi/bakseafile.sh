@@ -8,6 +8,6 @@ sourcedir=/media/u-sda1  # Mount subvolid=0 here
 nbackup=30            # Keep this many backups on $destdir
 nsnap=30           # keep this many source snapshots on $sourcedir/$snapdir
 
-args="--num-backups $nbackup --snapshot-folder ${d} --num-snapshots ${nsnap}"
+args="--num-backups $nbackup --snapshot-folder ${snapdir} --num-snapshots ${nsnap}"
 echo Executing $cmd $args $sourcedir $destdir
 $cmd $args $sourcedir $destdir
