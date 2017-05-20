@@ -9,7 +9,7 @@ import sys
 
 class Cron:
     def __init__(self, freq_list, log_file):
-        ''' 
+        '''
         freq_dict in {'daily':[task,task], 'hourly':[xxxx..
         format task is ('name',func) tuple
         '''
@@ -60,7 +60,7 @@ class Cron:
         '''
         log format: date\t type\t task name start running
         obtain last weekly, daily, hourly task running log
-        bug self.logs only need the the last running time 
+        bug self.logs only need the the last running time
         of all tasks
         '''
         self.logs = {}
@@ -80,7 +80,7 @@ def run_command(command):
 
 
 def btrfsbackup():
-    command = ['/usr/local/bin/bakbtrfs.sh']
+    command = ['/usr/local/bin/bakseafile.sh']
     #command = ['ls','/home/huangyu']
     run_command(command)
 
