@@ -51,8 +51,11 @@ class Cron:
         open log file to read and write, log_file is an
         absolute path contains log file name
         '''
-        if(os.path.exists(os.path.dirname(log_file))):
+        if(os.path.exists(log_file)):  # already exists
             return open(log_file, 'r+')
+        elif(os.path.exists(os.path.dirname(log_file))):
+            # create new file
+            return open(log_file, 'w')
         else:
             raise Exception("the dir to put log file does not exists")
 
