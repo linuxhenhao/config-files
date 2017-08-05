@@ -6,7 +6,7 @@ check_and_run()
 		$1 &
 	fi
 }
-programs="xcompmgr sogou-qimpanel synap volumeicon kcpss gnome-settings-daemon lxqt-policykit-agent" #nutstore"
+programs="xcompmgr sogou-qimpanel volumeicon kcpss gnome-settings-daemon lxqt-policykit-agent" #nutstore"
 
 touch ~/start-run
 for i in $programs

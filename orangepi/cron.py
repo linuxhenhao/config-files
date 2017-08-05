@@ -19,8 +19,8 @@ class Cron:
         # dict in {'weekly':[(seconds, taskname)],'daily':xxx}
 
     def run(self):
-        week_seconds = 36288000  # week translate to seconds
-        day_seconds = 5184000  # day translate to seconds
+        week_seconds = 604800 # week translate to seconds
+        day_seconds = 86400 # day translate to seconds
         hour_seconds = 3600  # hour translate to seconds
         time_sequence = {'hourly': hour_seconds, 'daily': day_seconds,
                          'weekly': week_seconds}
