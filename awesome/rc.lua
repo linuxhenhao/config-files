@@ -303,7 +303,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
+              {description = "select previous", group = "client"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -332,8 +332,11 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
     -- customized
+-- i3lock screenlock
+    awful.key({ "Control", "Mod1"   }, "l", function () awful.spawn("i3lock -i /home/huangyu/workspace/config-files/awesome/desktop.png")      end,
+              {description = "screenlock", group = "launcher"})
 )
 
 clientkeys = awful.util.table.join(
