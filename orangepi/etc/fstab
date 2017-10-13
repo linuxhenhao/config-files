@@ -1,4 +1,7 @@
 # OrangePI fstab
-/dev/sda2  /  ext4  errors=remount-ro,noatime,nodiratime  0 1
-/dev/mmcblk0p1  /media/boot  vfat  defaults  0 0
-tmpfs /tmp  tmpfs nodev,nosuid,mode=1777  0 0
+#cgroup /sys/fs/cgroup cgroup default 0 0
+LABEL=pi-root /    ext4 defaults,noatime,commit=60 0 0
+LABEL=swap swap swap  default 0 0
+LABEL=data-raid1 /media/raid1 btrfs defaults,noatime,compress=lzo,autodefrag 0 0
+LABEL=pi-data /media/normal btrfs defaults,noatime,compress=lzo,autodefrag,subvol=normal-subvol 0 0
+LABEL=pi-data /media/u-sda1 btrfs defaults,noatime,compress=lzo,autodefrag,subvol=important-subvol 0 0
