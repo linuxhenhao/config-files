@@ -30,6 +30,12 @@ import sys
 import os
 import time
 import argparse
+import logging
+import re
+
+
+logging.basicConfig(level=logging.DEBUG)
+datedirPattern = re.compile('^[0-9]{12}$')
 
 def datestr(timestamp=None):
     if timestamp is None:
@@ -104,22 +110,23 @@ def delete_old_backups(backuploc, max_num_backups, snapshotprefix=''):
     """
 
     # recurse target backup folder until "max_num_backups" is reached
-    cur_num_backups = len(os.listdir(backuploc))
+    backup_dirnames = []
+    # add all the backupdirs to backup_dirnames list
+    for directory in os.listdir(backuploc):
+        if os.path.isdir(backuploc+os.sep+directory) and directory.startswith(snapshotprefix):
+            if(datedirPattern.match(directory[len(snapshotprefix):]) is not None):
+                backup_dirnames.append(directory)
+    # now we got all the backup dir's names in the backuploc, without full path in fs
+    cur_num_backups = len(backup_dirnames)
+    backup_dirnames.sort()  # now dirnames from small to big
+    oldest_index = 0
     for i in range(cur_num_backups - max_num_backups):
 
         # find all backup snapshots in directory and build time object list
-        bak_dir_time_objs = []
-        for directory in os.listdir(backuploc):
-            if os.path.isdir(directory) and directory.startswith(snapshotprefix):
-                dirname = directory[len(snapshotprefix):]
-                try:
-                    bak_dir_time_objs.append(time.strptime(dirname, '%Y%m%d%H%M'))
-                except:
-                    pass
 
         # find oldest directory object and mark to remove
-        bak_dir_to_remove = datestr(find_old_backup(bak_dir_time_objs, 0))
-        bak_dir_to_remove_path = os.path.join(backuploc, bak_dir_to_remove)
+        bak_dir_to_remove_path = os.path.join(backuploc, backup_dirnames[oldest_index])
+        oldest_index += 1
         print ("Removing old backup dir " + bak_dir_to_remove_path)
 
         # delete snapshot of oldest backup snapshot
