@@ -5,6 +5,9 @@ import time
 import subprocess
 import os
 import sys
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 class Cron:
@@ -26,16 +29,25 @@ class Cron:
                          'weekly': week_seconds}
         if(len(self._freq) != 0):
             time.sleep(600)  # sleep 10min before run
-            for type, task in self._freq:
-                task_name, func = task
-                last_time = self.logs.get(task_name)
-                task_name = task_name.strip()
-                if(last_time is None or time.time() -
-                   last_time > time_sequence[type]):
-                    # last running time more than one hour, one day or one week
-                    func()
-                    self.write_log(type, task_name)
-            time.sleep(1800)
+            while True:
+                for type, task in self._freq:
+                    task_name, func = task
+                    last_time = self.logs.get(task_name)
+                    task_name = task_name.strip()
+                    logging.debug("task {} last run time {}".format(
+                        task_name, last_time))
+                    logging.debug("has passed {}s from last run task {}".format(
+                        time.time()-last_time, task_name))
+                    logging.debug("waiting until passed time grow to {}".format(
+                        time_sequence[type]))
+                    if(last_time is None or time.time() -
+                       last_time > time_sequence[type]):
+                        # last running time more than one hour, one day or one week
+                        logging.info("task {}: {}s passed since last run".format(
+                            task_name, time_sequence[type]))
+                        func()
+                        self.write_log(type, task_name)
+                time.sleep(1800)
 
     def write_log(self, type, task_name):
         self.logs[task_name] = time.time()
@@ -87,10 +99,13 @@ def btrfsbackup():
     #command = ['ls','/home/huangyu']
     run_command(command)
 
+def test():
+    print("test function")
+
 # freq_list item type, (taskname, func)
 # type can be hourly daily weekly
 freq_list = [('daily', ('btrfsbackup', btrfsbackup)),
             ]
-log_file = '/var/log/cron.log'
+log_file = '/var/log/mycron.log'  # can't be cron.log, it is used by system's cron
 cron = Cron(freq_list, log_file)
 cron.run()
