@@ -1,0 +1,5 @@
+# file: /etc/unbound/google_scholar
+        local-data: "scholar.google.cn. IN AAAA 2404:6800:4008:c06::be"
+        local-data: "scholar.google.com. IN AAAA 2404:6800:4008:c06::be"
+        local-data: "scholar.google.com.hk. IN AAAA 2404:6800:4008:c06::be"
+	local-data: "scholar.l.google.com. IN AAAA 2404:6800:4008:c06::be"
