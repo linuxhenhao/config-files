@@ -7,12 +7,13 @@ import time
 logging.basicConfig(level=logging.DEBUG)
 PROGRAMS = [('xcompmgr', ''),
             ('volumeicon', ''),
-            ('kcpclient', '-r ipv4.thinkeryu.com:4001 '
+            ('kcpclient', '-r ipv4.thinkeryu.com:4000 '
                 '-l :8388 -mode fast2 -crypt xor 2>&1 >/dev/null'),
-            ('/usr/local/bin/sslocal', '-c /etc/shadowsocks.json'),
+            ('/usr/bin/sslocal', '-c /etc/shadowsocks.json'),
             ('lxqt-policykit-agent', ''),
             ('kupfer', '--no-splash'),
             ('fcitx', ''),
+            ('/home/huangyu/workspace/bin/cow', ''),
             ]
 
 
