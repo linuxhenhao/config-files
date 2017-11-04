@@ -92,7 +92,7 @@ function headers_prepare()
     #copy_fullpath ./arch/${HDR_ARCH} $1/
     copy_fullpath ./arch/ $1/
 
-    ln -sf ../../lib/linux-kbuild-$VERSION/scripts $1/
+    cp -r scripts $1/
 }
 
 
@@ -106,11 +106,9 @@ fi
 INSTALL_PATH=./linux-image-$VERSION/boot/
 INSTALL_MOD_PATH=./linux-modules-$VERSION/lib/
 HDR_PATH=./linux-headers-$VERSION/usr/src/linux-headers-$VERSION
-KBUILD_PATH=./linux-kbuild-$VERSION/usr/lib/linux-kbuild-$VERSION
 IMG_DIR=./linux-image-$VERSION
 MOD_DIR=./linux-modules-$VERSION
 HDR_DIR=./linux-headers-$VERSION
-KBUILD_DIR=./linux-kbuild-$VERSION
 
 
 
@@ -136,8 +134,6 @@ DirCheck ${IMG_DIR}/boot
 DirCheck ${IMG_DIR}/DEBIAN
 DirCheck ${HDR_DIR}/usr/src/linux-headers-$VERSION/
 DirCheck ${HDR_DIR}/DEBIAN
-DirCheck ${KBUILD_PATH}
-DirCheck ${KBUILD_DIR}/DEBIAN
 
 DirCheck ${MOD_DIR}/lib
 DirCheck ${MOD_DIR}/DEBIAN
@@ -230,26 +226,8 @@ if [ -e /lib/modules/$VERSION ];then
 fi
 EOF
 
-fileCheck ./${KBUILD_DIR}/DEBIAN/control
-cat >./${KBUILD_DIR}/DEBIAN/control<<EOF
-Package: linux-kbuild-$VERSION
-Version: $VERSION
-Architecture: $ARCH_ALIA
-Depends: linux-image-$VERSION, linux-modules-$VERSION
-Maintainer: huangyu<diwang90@gmail.com>
-Description: linux kernel kbuild
-EOF
-
-fileCheck ./${KBUILD_DIR}/DEBIAN/postinst
-cat >./${KBUILD_DIR}/DEBIAN/postinst<<EOF
-#!/bin/bash
-    ln -sf /usr/lib/linux-kbuild-$VERSION /usr/src/
-    make -C /lib/modules/$VERSION/build scripts
-EOF
-
 chmod 0555 ./${MOD_DIR}/DEBIAN/postinst
 chmod 0555 ./${HDR_DIR}/DEBIAN/postinst
-chmod 0555 ./${KBUILD_DIR}/DEBIAN/postinst
 
 INSTALL_PATH=./${IMG_DIR}/boot/ make install
 INSTALL_MOD_PATH=./${MOD_DIR}/ make modules_install
@@ -258,7 +236,6 @@ INSTALL_MOD_PATH=./${MOD_DIR}/ make modules_install
 headers_prepare ${HDR_PATH}
 
 #find ./scripts -type f -executable -exec cp --parents {} ${KBUILD_PATH} \;  
-cp -r ./scripts ${KBUILD_PATH}
 # copy to build kbuild
 
 # delete firmware, get them from official repo
@@ -275,8 +252,7 @@ if [ "x$ARCH" == "xarm" ];then
 fi
 
 
-
+sudo chown -r root:root ${IMG_DIR} ${MOD_DIR} ${HDR_DIR}
 dpkg -b ${IMG_DIR}
 dpkg -b ${MOD_DIR}
 dpkg -b ${HDR_DIR}
-dpkg -b ${KBUILD_DIR}
