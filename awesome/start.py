@@ -5,15 +5,21 @@ import logging
 import time
 
 logging.basicConfig(level=logging.DEBUG)
-PROGRAMS = [('xcompmgr', ''),
-            ('volumeicon', ''),
+# program in format ('binary_name', 'args', 'pgrep -f's match str')
+# if match str is '', using the 'binary_name' instead
+PROGRAMS = [('xcompmgr', '', ''),
+            ('volumeicon', '', ''),
             ('kcpclient', '-r ipv4.thinkeryu.com:4000 '
-                '-l :8388 -mode fast2 -crypt xor 2>&1 >/dev/null'),
-            ('/usr/bin/sslocal', '-c /etc/shadowsocks.json'),
-            ('lxqt-policykit-agent', ''),
-            ('kupfer', '--no-splash'),
-            ('fcitx', ''),
-            ('/home/huangyu/workspace/bin/cow', ''),
+                '-l :8388 -mode fast2 -crypt xor 2>&1 >/dev/null',
+                'ipv4.thinkeryu.com:4000'),
+            ('kcpclient', '-r ipv4.thinkeryu.com:3000 '
+                '-l :1024 -mode fast2 -crypt xor 2>&1 >/dev/null'
+                'ipv4.thinkeryu.com:3000'),
+            ('/usr/bin/sslocal', '-c /etc/shadowsocks.json', ''),
+            ('lxqt-policykit-agent', '', ''),
+            ('kupfer', '--no-splash', ''),
+            ('fcitx', '', ''),
+            ('/home/huangyu/workspace/bin/cow', '', ''),
             ]
 
 
@@ -31,9 +37,12 @@ def start():
     remain = True
     while remain:
         remain = False  # set remain to False before run programs
-        for name, args in PROGRAMS:
+        for name, args, pattern in PROGRAMS:
             try:
-                subprocess.check_output(('pgrep', '-f', name))
+                if(pattern == ''):
+                    subprocess.check_output(('pgrep', '-f', name))
+                else:
+                    subprocess.check_output(('pgrep', '-f', pattern))
                 # -f option for pgrep to grep both commands and args
                 logging.debug('{} is running'.format(name))
             except:  # exception will be raised if no pid of name was found
