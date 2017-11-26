@@ -58,6 +58,7 @@ function headers_prepare()
     # copy to build headers deb
     # cp -r ./include ${HDR_DIR}/usr/src/linux-headers-$VERSION
     # cp ./.kernelvariables $1 
+    make prepare
     make scripts
     # make scripts will produce include/config/auto.conf
     # which is needed by the build process of any external module
@@ -112,14 +113,13 @@ HDR_DIR=./linux-headers-$VERSION
 
 
 
-if [ "x$ARCH" == "x" ];then
+if [ "x$ARCH" != "xarm" ];then
 	PKG_ARCH=$( GetPKGArch )
-    ARCH_ALIA=${ARCH}
+    ARCH_ALIA=${PKG_ARCH}
     UPDATE_GRUB="update-grub"
     KERNEL_DEPS=""
     MAKE_UINITRD=""
-fi
-if [ "x$ARCH" == "xarm" ];then
+else
     ARCH_ALIA=${ARCH}hf
     UPDATE_GRUB=""
     KERNEL_DEPS="u-boot-tools"
@@ -252,7 +252,7 @@ if [ "x$ARCH" == "xarm" ];then
 fi
 
 
-sudo chown -r root:root ${IMG_DIR} ${MOD_DIR} ${HDR_DIR}
+sudo chown -R root:root ${IMG_DIR} ${MOD_DIR} ${HDR_DIR}
 dpkg -b ${IMG_DIR}
 dpkg -b ${MOD_DIR}
 dpkg -b ${HDR_DIR}

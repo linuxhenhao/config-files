@@ -13,7 +13,7 @@ PROGRAMS = [('xcompmgr', '', ''),
                 '-l :8388 -mode fast2 -crypt xor 2>&1 >/dev/null',
                 'ipv4.thinkeryu.com:4000'),
             ('kcpclient', '-r ipv4.thinkeryu.com:3000 '
-                '-l :1024 -mode fast2 -crypt xor 2>&1 >/dev/null'
+                '-l :1024 -mode fast2 -crypt xor 2>&1 >/dev/null',
                 'ipv4.thinkeryu.com:3000'),
             ('/usr/bin/sslocal', '-c /etc/shadowsocks.json', ''),
             ('lxqt-policykit-agent', '', ''),

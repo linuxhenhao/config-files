@@ -12,7 +12,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 -- Load Debian menu entries
-require("debian.menu")
+-- require("debian.menu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -102,7 +102,6 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -336,7 +335,9 @@ globalkeys = awful.util.table.join(
     -- customized
 -- i3lock screenlock
     awful.key({ "Control", "Mod1"   }, "l", function () awful.spawn("i3lock -i /home/huangyu/workspace/config-files/awesome/desktop.png")      end,
-              {description = "screenlock", group = "launcher"})
+              {description = "screenlock", group = "launcher"}),
+    awful.key({ "Control", "Mod1"   }, "p", function () awful.spawn("flatpak run com.deepin.Screenshot")      end,
+              {description = "screenshot", group = "launcher"})
 )
 
 clientkeys = awful.util.table.join(
@@ -480,6 +481,10 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     { rule = { class = "Firefox" },
        properties = { screen = 1, tag = "1" } },
+
+    -- set xterm on tag 9 screen 1
+    { rule = {class = "XTerm"},
+       properties = { screen = 1, tag = "9"} },
 }
 -- }}}
 
