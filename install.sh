@@ -65,6 +65,7 @@ function headers_prepare()
     cp ./.config $1
     cp ./Module.symvers $1
     cp --parents ./arch/Kconfig  $1
+    cp --parents ./include/config/kernel.release $1
 
     cp ./Makefile $1
     #cp ./Kbuild $1
