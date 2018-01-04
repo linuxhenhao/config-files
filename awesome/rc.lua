@@ -41,7 +41,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "yuzi/theme.lua")
+beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -338,6 +338,8 @@ globalkeys = awful.util.table.join(
               {description = "screenlock", group = "launcher"}),
     awful.key({ "Control", "Mod1"   }, "p", function () awful.spawn("flatpak run com.deepin.Screenshot")      end,
               {description = "screenshot", group = "launcher"})
+--- awful.key({ "Mod1"   }, "space", function () awful.spawn("dmenu_run")      end,
+---           {description = "applauncher", group = "launcher"})
 )
 
 clientkeys = awful.util.table.join(
@@ -475,7 +477,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
