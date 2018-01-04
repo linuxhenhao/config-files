@@ -71,6 +71,9 @@ function headers_prepare()
     #cp ./Kbuild $1
     cp ./Kconfig $1
 
+    # copy arch specific tools
+    cp -R --parents  ./arch/${ARCH}/tools $1
+
     # copy dir in include to $1
     # copy_fullpath src dst
     dirs=(block certs crypto drivers firmware fs include \
@@ -120,11 +123,13 @@ if [ "x$ARCH" != "xarm" ];then
     UPDATE_GRUB="update-grub"
     KERNEL_DEPS=""
     MAKE_UINITRD=""
+    MAKE_PREPARE=""
 else
     ARCH_ALIA=${ARCH}hf
     UPDATE_GRUB=""
     KERNEL_DEPS="u-boot-tools"
     MAKE_UINITRD="genuinitrd"
+    MAKE_PREPARE="make -C /lib/modules/${VERSION}/source/ prepare"
 fi
 
 
@@ -224,6 +229,7 @@ cat >./${HDR_DIR}/DEBIAN/postinst<<EOF
 if [ -e /lib/modules/$VERSION ];then
     ln -sf /usr/src/linux-headers-$VERSION /lib/modules/$VERSION/build
     ln -sf /usr/src/linux-headers-$VERSION /lib/modules/$VERSION/source
+    ${MAKE_PREPARE}
 fi
 EOF
 
