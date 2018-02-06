@@ -9,17 +9,11 @@ logging.basicConfig(level=logging.DEBUG)
 # if match str is '', using the 'binary_name' instead
 PROGRAMS = [('xcompmgr', '', ''),
             ('volumeicon', '', ''),
-            ('kcpclient', '-r ipv4.thinkeryu.com:4000 '
-                '-l :8388 -mode fast2 -crypt xor 2>&1 >/dev/null',
-                'ipv4.thinkeryu.com:4000'),
-            ('kcpclient', '-r ipv4.thinkeryu.com:3000 '
-                '-l :1024 -mode fast2 -crypt xor 2>&1 >/dev/null',
-                'ipv4.thinkeryu.com:3000'),
-            ('/usr/bin/sslocal', '-c /etc/shadowsocks.json', ''),
+            # ('/usr/bin/ss-local', '-c /etc/shadowsocks.json', ''),
             ('lxqt-policykit-agent', '', ''),
             ('kupfer', '--no-splash', ''),
             ('fcitx', '', ''),
-            ('/home/huangyu/workspace/bin/cow', '', ''),
+            ('x-session-manager', '', ''),
             ]
 
 
