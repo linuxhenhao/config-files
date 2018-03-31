@@ -2,7 +2,7 @@
 ---------
 
 file name | function
---------------------------
+----------|----------------
 bakseafile.sh | using btrfsbackup.py to backup files 
 btrfsbackup.py | python script using btrfs send and receive to backup snapshot
 cron.py | a simple script to run tasks periodicly
