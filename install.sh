@@ -14,6 +14,11 @@ else
         "default")
             echo $(uname -m)
             ARCH=$(uname -m)
+            if [ "$ARCH"x == "x86_64x" ]; then
+                ARCH_TOOLS="x86"
+            else
+                ARCH_TOOLS=$ARCH
+            fi
             ;;
     esac
 fi
@@ -72,7 +77,7 @@ function headers_prepare()
     cp ./Kconfig $1
 
     # copy arch specific tools
-    cp -R --parents  ./arch/${ARCH}/tools $1
+    cp -R --parents  ./arch/${ARCH_TOOLS}/tools $1
 
     # copy dir in include to $1
     # copy_fullpath src dst
