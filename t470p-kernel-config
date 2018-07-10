@@ -2,6 +2,7 @@
 # Automatically generated file; DO NOT EDIT.
 # Linux/x86 4.17.0 Kernel Configuration
 #
+## hahah
 CONFIG_64BIT=y
 CONFIG_X86_64=y
 CONFIG_X86=y
