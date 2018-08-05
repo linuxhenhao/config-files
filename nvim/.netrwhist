@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/huangyu/workspace/gitrepo/cabinet-TX2'
 let g:netrw_dirhist_2='/home/huangyu/workspace/gitrepo/cabinet-TX2/vending'
 let g:netrw_dirhist_3='/home/huangyu/workspace/gitrepo/log'
+let g:netrw_dirhist_4='/home/huangyu/workspace/gitrepo/cabinet/ipc_enums/src/ipc_enums'
+let g:netrw_dirhist_5='/home/huangyu/workspace/gitrepo/cabinet/IPC-omnivore'
