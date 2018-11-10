@@ -389,6 +389,7 @@ call plug#begin('~/.local/share/nvim/pluged')
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
+Plug 'davidhalter/jedi-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Valloric/YouCompleteMe', {'do': ':UpdateRemotePlugins'}
 Plug 'vim-syntastic/syntastic', {'do': ':UpdateRemotePlugins'}
 Plug 'python-rope/ropevim', {'do': ':UpdateRemotePlugins'}
