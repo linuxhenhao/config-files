@@ -392,7 +392,6 @@ call plug#begin('~/.local/share/nvim/pluged')
 Plug 'davidhalter/jedi-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Valloric/YouCompleteMe', {'do': ':UpdateRemotePlugins'}
 Plug 'vim-syntastic/syntastic', {'do': ':UpdateRemotePlugins'}
-Plug 'python-rope/ropevim', {'do': ':UpdateRemotePlugins'}
 
 call plug#end()
 
@@ -407,3 +406,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes3']
 " end vim-syntastic settings
+" jedi-vim configs
+let g:jedi#auto_initialization = 1
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<C-g>"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+" end jedi-vim configs
