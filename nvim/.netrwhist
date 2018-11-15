@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/huangyu/workspace/gitrepo/cabinet-TX2'
 let g:netrw_dirhist_2='/home/huangyu/workspace/gitrepo/cabinet-TX2/vending'
 let g:netrw_dirhist_3='/home/huangyu/workspace/gitrepo/log'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/huangyu/workspace/gitrepo/cabinet/IPC-omnivore'
 let g:netrw_dirhist_6='/home/huangyu/workspace/gitrepo/cabinet/IPC-omnivore/.tox'
 let g:netrw_dirhist_7='/home/huangyu/workspace/gitrepo/cabinet/remote_detector/.git'
 let g:netrw_dirhist_8='/home/huangyu/workspace/gitrepo/cabinet/IPC-omnivore/src/handler'
+let g:netrw_dirhist_9='/home/huangyu/workspace/gitrepo/cabinet/IPC-communicator/tests'
