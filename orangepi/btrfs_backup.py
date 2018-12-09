@@ -27,7 +27,7 @@ def run_command(command: List[str], shell: bool=False)->Response:
         resp.output = str(e)
         resp.code = e.errno
     else:
-        resp.output = output
+        resp.output = output.decode('utf-8')
         resp.code = 0
     return resp
 
