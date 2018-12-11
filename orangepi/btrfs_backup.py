@@ -33,7 +33,7 @@ def run_command(command: List[str], shell: bool=False)->Response:
 
 
 def create_new_snapshot(source: str, dst: str)->None:
-    command = ['btrfs', 'subvolume', 'create', '-r', source, dst]
+    command = ['btrfs', 'subvolume', 'snapshot', '-r', source, dst]
     resp = run_command(command)
     if resp.code != 0:
         logger.error(
@@ -44,8 +44,8 @@ def create_new_snapshot(source: str, dst: str)->None:
 
 
 def send_snapshot(source: str, dst: str)->None:
-    command = ['btrfs', 'send', source, '|', 'btrfs', 'receive', dst]
-    resp = run_command(command, shell=True)
+    command = ['bash', '-c', f'btrfs send {source} | btrfs receive {dst}']
+    resp = run_command(command)
     if resp.code != 0:
         logger.error(
             f'send snapshot from {source} to {dst} failed')
