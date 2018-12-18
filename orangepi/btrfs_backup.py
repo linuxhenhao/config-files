@@ -43,8 +43,8 @@ def create_new_snapshot(source: str, dst: str)->None:
             f'create new snapshot for {source} at {dst} successfully')
 
 
-def send_snapshot(source: str, dst: str)->None:
-    command = ['bash', '-c', f'btrfs send {source} | btrfs receive {dst}']
+def send_snapshot(source: str, parent: str, dst: str)->None:
+    command = ['bash', '-c', f'btrfs send {source} -p {parent} | btrfs receive {dst}']
     resp = run_command(command)
     if resp.code != 0:
         logger.error(
@@ -73,6 +73,9 @@ def get_all_rsorted_snapshots(directory: str) -> List[str]:
         logger.error(f'error while listing subvols in dir {directory}')
         return
     return sorted(_find_all_subvols(resp.output), reverse=True)
+
+def get_parent_snapshot_name(snapshots: List[str]) -> str:
+    return newest_snapshot = snapshots[0]
 
 
 def need_new_snapshot(snapshots: List[str]):
@@ -158,9 +161,10 @@ def main(storage_dir, source_dir, snapshots_dir):
     snapshots = get_all_rsorted_snapshots(storage_dir)
 
     if need_new_snapshot(snapshots):
+        parent_snapshot_name = get_parent_snapshot_name(snapshots)
         snapshot_name = datetime.now().strftime(TIME_FORMAT)
         snapshot_path = snapshots_dir + '/' + snapshot_name
-        create_new_snapshot(source_dir, snapshot_path)
+        create_new_snapshot(source_dir, parent_snapshot_name, snapshot_path)
         send_snapshot(snapshot_path, storage_dir)
         delete_old_snapshots(snapshots.insert(0, snapshot_name), policy)
 
