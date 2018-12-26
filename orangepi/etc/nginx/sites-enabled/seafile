@@ -1,6 +1,6 @@
 server {
     listen 8030;
-    server_name sea.huangyu.me;
+    server_name seafile.huangyu.me;
     ssl on;
     ssl_certificate /etc/ssl/OriginCert.pem;
     ssl_certificate_key /etc/ssl/Private.pem;
@@ -20,6 +20,12 @@ server {
 
          access_log      /var/log/nginx/seahub.access.log;
          error_log       /var/log/nginx/seahub.error.log;
+    }
+    
+    location /shutdown/ {
+        auth_basic "auth to do actions";
+        auth_basic_user_file "/etc/nginx/htpassword";
+        proxy_pass http://127.0.0.1:8888/shutdown/;
     }
 
 # If you are using [FastCGI](http://en.wikipedia.org/wiki/FastCGI),
@@ -60,5 +66,15 @@ server {
     }
     location /media {
         root /media/u-sda1/yuzi/seafile-server-latest/seahub;
+    }
+}
+
+server 
+{
+    listen 80;
+    location /
+    {
+        autoindex on;
+        root /media/;
     }
 }
