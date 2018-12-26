@@ -1,2 +1,3 @@
-nvim/pluged/*
-nvim/shada/*
+/nvim/pluged/
+/nvim/shada/
+/nvim/.netrwhist

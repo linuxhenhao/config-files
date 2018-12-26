@@ -387,11 +387,14 @@ endfunction
 " vim-plug section
 call plug#begin('~/.local/share/nvim/pluged')
 
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
-Plug 'Valloric/YouCompleteMe', {'do': ':UpdateRemotePlugins'}
+" requires neovim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"requires jedi
+Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-syntastic/syntastic', {'do': ':UpdateRemotePlugins'}
-Plug 'python-rope/ropevim', {'do': ':UpdateRemotePlugins'}
+"ropevim requires pip install rope ropevim
+"Plug 'python-rope/ropevim', {'do': ':UpdateRemotePlugins'}
+Plug 'scrooloose/nerdtree', {'do': ':UpdateRemotePlugins'}
 
 call plug#end()
 
@@ -406,3 +409,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
 " end vim-syntastic settings
+
+" enable auto complete
+let g:deoplete#enable_at_startup = 1
+
+""python virtual env
+let g:python_host_prog = "/usr/bin/python"
+let g:python3_host_prog = "/usr/bin/python"
