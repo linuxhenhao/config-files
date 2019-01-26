@@ -3754,6 +3754,10 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 
 
 source ~/.bashrc
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 ## genrefcard.pl settings
 
 ### doc strings for external functions from files
@@ -3768,3 +3772,5 @@ source ~/.bashrc
 # mode: sh
 # End:
 #
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

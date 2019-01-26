@@ -388,13 +388,15 @@ endfunction
 call plug#begin('~/.local/share/nvim/pluged')
 
 " requires neovim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "requires jedi
-Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-syntastic/syntastic', {'do': ':UpdateRemotePlugins'}
 "ropevim requires pip install rope ropevim
 "Plug 'python-rope/ropevim', {'do': ':UpdateRemotePlugins'}
+Plug 'neomake/neomake', {'do': ':UpdateRemotePlugins'}
 Plug 'scrooloose/nerdtree', {'do': ':UpdateRemotePlugins'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() }}
 
 call plug#end()
 
@@ -415,4 +417,7 @@ let g:deoplete#enable_at_startup = 1
 
 ""python virtual env
 let g:python_host_prog = "/usr/bin/python"
-let g:python3_host_prog = "/usr/bin/python"
+let g:python3_host_prog = "/usr/bin/python3"
+
+" auto make using neomake
+call neomake#configure#automake('nrwi', 500)
