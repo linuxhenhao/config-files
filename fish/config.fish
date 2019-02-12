@@ -21,6 +21,8 @@ set -g __fish_git_prompt_color_cleanstate green bold
 
 set -gx PATH '/home/huangyu/.pyenv/shims' $PATH
 set -gx PATH '/home/huangyu/.pyenv/bin' $PATH
+set -gx PATH '/home/huangyu/workspace/bin' $PATH
+set -gx PATH '/home/huangyu/.cargo/bin' $PATH
 set -gx PYENV_SHELL fish
 source '/home/huangyu/.pyenv/libexec/../completions/pyenv.fish'
 command pyenv rehash 2>/dev/null
