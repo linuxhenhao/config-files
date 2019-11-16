@@ -4,7 +4,8 @@
 
 ```
 apt-get install 
-awesomewm
+awesome
+awesome-extra
 xinit
 xserver-xorg-video-XXX(intel/or others)
 xcompmgr (window transparency)
