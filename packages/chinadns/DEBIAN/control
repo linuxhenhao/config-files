@@ -1,0 +1,7 @@
+Package: chinadns
+Version: 20191123
+Section: main
+Architecture: amd64
+Depends: libc6
+Maintainer: huangyu<diwang90@gmail.com>
+Description: chinadns for avoid abroad cdn

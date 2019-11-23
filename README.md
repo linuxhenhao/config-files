@@ -58,3 +58,32 @@ set-card-profile 1 output:analog-stereo+input:analog-stereo
 ```
 
 
+
+### 3. Network configuration
+
+For some reason, Network proxy is a *Must have* feature. Wireguard is a very good and secure virtual private network service provider. 
+
+By default, wg-quick using fwmark and ip rule to configure policy based route database, if any route was matched in main route table (except default route), the packets will be sent out using default device. otherwise the wireguard network would be used. To avoid long travel of `local` network packets, a chnroute.txt which contains nearly all IPs in China was used to produce lots of rows in main route table.
+
+But there is still a problem, As is known to all, to provide better service to people all over the world, Lots of companies are using CDN, which means the server IP got from DNS query is varied according to the request's source. If all of the DNS requests were sent out by remote wireguard server, Even there are some servers located very close to our original computer, we finally established a connection to a remote CDN server. That's unacceptable! To avoid such a problem, a service named chinadns should be enabled.
+
+In repo `config-files`, the deb package of chinadns can be found.
+
+```
+dpkg -i packages/chinadns.deb
+systemctl enable chinadns.service
+systemctl start chinadns.service
+rm /etc/resolv.conf
+echo "nameserver 127.0.0.1" > /etc/resolv.conf
+```
+
+When configuring wireguard, a PostUp script should be run, it was located in repo `config-files`, too.
+
+```
+[Interface]
+xxx
+xxx
+PostUp = /path/to/chinadns_routes.py up
+PreDown = /path/to/chinadns_routes.py down
+```
+

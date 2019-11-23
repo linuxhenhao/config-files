@@ -1,0 +1,10 @@
+[Unit]
+Description=China DNS
+Documentation=dns proxy to avoid abroad cdn
+
+[Service]
+Type=Simple
+ExecStart=/usr/bin/chinadns -m -c /usr/share/doc/chinadns/chnroute.txt
+
+[Install]
+WantedBy=multi-user.target
