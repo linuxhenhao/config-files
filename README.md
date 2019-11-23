@@ -87,3 +87,8 @@ PostUp = /path/to/chinadns_routes.py up
 PreDown = /path/to/chinadns_routes.py down
 ```
 
+enable virtual network as a auto startup service
+
+```
+systemctl enable wg-quick@wg0  # wg0 means using /etc/wireguard/wg0.conf
+```
