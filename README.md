@@ -92,3 +92,19 @@ enable virtual network as a auto startup service
 ```
 systemctl enable wg-quick@wg0  # wg0 means using /etc/wireguard/wg0.conf
 ```
+
+# wireguard with udp2raw
+sometimes udp was treated as a second level citizen in the internet. which can
+lead to packet loss or even packet blocking. udp2raw can send packets with tcp
+header such as sync/seq/ack etc, but in fact, the underlying working mechanism
+is still udp. This is a better way than udp in tcp tunnel, which brings in a header
+and congestion control overhead.
+
+wireguard -> local <-> udp2raw <-> remote-server -> wireguard endpoint
+
+To achive the above packets tunnel, first a udp2raw connection should be established
+between local and server, then, a route policy for remote-server should be added in
+main route table to avoid the system sending udp2raw packets throught wireguard interface.
+
+This functionality was added to chinadns_routes.py. But to get the hostname of remote server,
+the chinadns_routes.py should run in PreUp phase in wiregurad configuration.
