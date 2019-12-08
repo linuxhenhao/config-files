@@ -1,0 +1,10 @@
+[Unit]
+Description=udp2raw service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/udp2raw --fix-gro -a -s -l0.0.0.0:3344 -r127.0.0.1:5555
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
